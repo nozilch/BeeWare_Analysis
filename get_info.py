@@ -4,6 +4,7 @@ import certifi
 import base64
 import pandas as pd
 import matplotlib.pyplot as plt
+from datetime import datetime, timedelta
 
 os.environ['REQUESTS_CA_BUNDLE'] = certifi.where()
 
@@ -24,7 +25,8 @@ def get_repo_info(owner, repo):
 
 # 获取仓库的基本信息
 owner = "beeware"
-repo = "beeware"
+# repo = "beeware"
+repo = "toga"
 repo_info = get_repo_info(owner, repo)
 
 
@@ -155,6 +157,8 @@ def get_commits(owner, repo):
 # 获取提交记录
 commits = get_commits(owner, repo)
 '''
+
+'''
 # 翻页
 def get_all_commits(owner, repo):
     url = f'https://api.github.com/repos/{owner}/{repo}/commits'
@@ -185,6 +189,70 @@ def get_all_commits(owner, repo):
             url = None  # 结束循环
 
     return all_commits
+'''
+
+'''
+def get_all_commits(owner, repo):
+    url = f'https://api.github.com/repos/{owner}/{repo}/commits'
+    all_commits = []
+    headers = {'User-Agent': 'Mozilla/5.0'}  # 必须包含 User-Agent
+
+    page = 1  # 从第一页开始
+    per_page = 100  # 每页返回100条记录（最大100条）
+
+    while True:
+        params = {'page': page, 'per_page': per_page}  # 添加分页参数
+        response = requests.get(url, headers=headers, params=params, verify=False)
+
+        if response.status_code == 200:
+            commits_page = response.json()
+            if not commits_page:  # 如果当前页面为空，结束循环
+                break
+            all_commits.extend(commits_page)
+
+            # 如果获取到的提交数量小于per_page，说明已经没有更多提交了
+            if len(commits_page) < per_page:
+                break
+            page += 1  # 继续获取下一页
+
+        else:
+            print(f"Error: Unable to fetch commits data (status code {response.status_code})")
+            break  # 如果遇到错误，结束循环
+
+    return all_commits
+'''
+
+def get_all_commits(owner, repo):
+    url = f'https://api.github.com/repos/{owner}/{repo}/commits'
+    all_commits = []
+    headers = {'User-Agent': 'Mozilla/5.0'}
+
+    # 起始日期和结束日期
+    start_date = datetime(2018, 8, 1)  # 根据实际情况设定
+    end_date = datetime.now()
+
+    # 每次请求的时间窗口大小
+    window_size = timedelta(days=100)  # 设置为30天
+
+    while start_date < end_date:
+        since = start_date.isoformat()
+        until = (start_date + window_size).isoformat()
+
+        params = {'since': since, 'until': until, 'per_page': 100}
+        response = requests.get(url, headers=headers, params=params, verify=False)
+
+        if response.status_code == 200:
+            commits_page = response.json()
+            if not commits_page:  # 如果当前页面为空，结束循环
+                break
+            all_commits.extend(commits_page)
+            start_date += window_size  # 继续拉取下一个时间窗口
+        else:
+            print(f"Error: Unable to fetch commits data (status code {response.status_code})")
+            break  # 结束循环
+
+    return all_commits
+
 
 
 # 使用示例
