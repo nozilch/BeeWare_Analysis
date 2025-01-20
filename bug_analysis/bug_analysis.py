@@ -5,7 +5,7 @@ import matplotlib.pyplot as plt
 # GitHub仓库信息和个人访问令牌
 repo_owner = "beeware"
 repo_name = "beeware"
-token = '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'
+token = '个人令牌'
 
 headers = {
     'Authorization': f'token {token}',
