@@ -4,9 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="9751d364-c8a7-4943-b777-e3a7a2488caa" name="更改" comment="">
-      <change beforePath="$PROJECT_DIR$/bug_analysis.py" beforeDir="false" afterPath="$PROJECT_DIR$/bug_analysis.py" afterDir="false" />
-    </list>
+    <list default="true" id="9751d364-c8a7-4943-b777-e3a7a2488caa" name="更改" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -18,9 +16,6 @@
         <option value="Python Script" />
       </list>
     </option>
-  </component>
-  <component name="Git.Settings">
-    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
   </component>
   <component name="ProblemsViewState">
     <option name="selectedTabId" value="CurrentFile" />
@@ -35,9 +30,11 @@
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
+    "Python.bug_data.executor": "Run",
+    "Python.bug_detail.executor": "Run",
     "Python.test.executor": "Run",
+    "Python.相关信息.executor": "Run",
     "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "main",
     "settings.editor.selected.configurable": "com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable"
   }
 }]]></component>

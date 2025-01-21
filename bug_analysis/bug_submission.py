@@ -5,11 +5,11 @@ import matplotlib.pyplot as plt
 # GitHub仓库信息和个人访问令牌
 repo_owner = "beeware"
 repo_name = "beeware"
-token = '个人令牌'
+ # 在此处添加自己的PAT
 
-headers = {
-    'Authorization': f'token {token}',
-}
+#headers = {
+   # 'Authorization': f'token {token}',
+#}
 
 
 def fetch_issues():
